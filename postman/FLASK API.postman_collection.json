@@ -24,18 +24,52 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8080/auth/registrar",
-							"protocol": "http",
+							"raw": "{{endpoint}}/auth/registrar",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{endpoint}}"
 							],
-							"port": "8080",
 							"path": [
 								"auth",
 								"registrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar sesión",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let json = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", json.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario\": \"andres\",\n    \"clave\": \"octano\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/auth/login",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"auth",
+								"login"
 							]
 						}
 					},
@@ -45,7 +79,260 @@
 		},
 		{
 			"name": "api",
-			"item": []
+			"item": [
+				{
+					"name": "Obtener peliculas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/peliculas",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar pelicula por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/peliculas/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"peliculas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener peliculas por ID Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/peliculas/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"peliculas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"La lista de Schindler\",\n    \"estreno\": \"28/02/2019\",\n    \"director\": \"Francis Ford Coppola\",\n    \"reparto\": \"Liam Neeson, Ben Kingsley, Ralph Fiennes\",\n    \"genero\": \"Crimen, Drama\",\n    \"sinopsis\": \"Septiembre de 1939. Los nazis invaden Polonia. Los judíos son internados en guetos y enviados a campos de concentración. El empresario alemán Oskar Schindler (Liam Neeson).\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/peliculas",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"La lista de Schindler\",\n    \"estreno\": \"28/02/20\",\n    \"director\": \"Francis Ford Coppola\",\n    \"reparto\": \"Liam Neeson, Ben Kingsley, Ralph Fiennes\",\n    \"genero\": \"Crimen, Drama\",\n    \"sinopsis\": \"Septiembre de 1939. Los nazis invaden Polonia. Los judíos son internados en guetos y enviados a campos de concentración. El empresario alemán Oskar Schindler (Liam Neeson).\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{endpoint}}/api/peliculas/1",
+							"host": [
+								"{{endpoint}}"
+							],
+							"path": [
+								"api",
+								"peliculas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

@@ -105,6 +105,8 @@ def obtener_peliculas():
 def obtener_pelicula_por_id(id):
   try:
     pelicula = Pelicula.query.get(id)
+    if not pelicula:
+      return jsonify(respuesta='Pelicula no encontrada'), 404
     return pelicula_schema.jsonify(pelicula), 200
   except Exception:
     return jsonify(respuesta = 'Error en peticion'), 500
@@ -117,14 +119,12 @@ def actualizar_pelicula(id):
     pelicula = Pelicula.query.get(id)
     if not pelicula:
       return jsonify(respuesta='Pelicula no encontrada'), 404
-
     pelicula.nombre = request.json['nombre']
     pelicula.estreno = request.json['estreno']
     pelicula.director = request.json['director']
     pelicula.reparto = request.json['reparto']
     pelicula.genero = request.json['genero']
     pelicula.sinopsis = request.json['sinopsis']
-    
     db.session.commit()
     return jsonify(respuesta='Pelicula actualizada exitosamente'), 200
   except Exception:
