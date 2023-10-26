@@ -14,5 +14,5 @@ class PeliculaSchema(ma.Schema):
     fields = ('id', 'nombre', 'estreno', 'director', 'reparto', 'genero', 'sinopsis')
 
 pelicula_schema = PeliculaSchema()
-pelicula_schema = PeliculaSchema(many=True)
+peliculas_schema = PeliculaSchema(many=True)
 
